@@ -17,6 +17,7 @@ from recommendations import (
 
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
+MODEL_PATH = BASE_DIR / "models" / "lightweight-visual-scanner"
 LABELS_PATH = BASE_DIR / "models" / "labels.json"
 PUBLIC_METADATA_PATH = PROJECT_DIR / "public" / "model" / "metadata.json"
 DEFAULT_LABELS = [
