@@ -107,6 +107,25 @@ function saveHistory(entries) {
   );
 }
 
+function imageElementToHistoryPreview(imageElement) {
+  const canvas = document.createElement("canvas");
+  const maxSide = 420;
+  const scale = Math.min(
+    1,
+    maxSide / Math.max(imageElement.naturalWidth, imageElement.naturalHeight),
+  );
+  canvas.width = Math.max(1, Math.round(imageElement.naturalWidth * scale));
+  canvas.height = Math.max(1, Math.round(imageElement.naturalHeight * scale));
+
+  const context = canvas.getContext("2d");
+  if (!context) {
+    return "";
+  }
+
+  context.drawImage(imageElement, 0, 0, canvas.width, canvas.height);
+  return canvas.toDataURL("image/jpeg", 0.78);
+}
+
 async function dataUrlToFile(dataUrl, filename) {
   const response = await fetch(dataUrl);
   const blob = await response.blob();
@@ -577,7 +596,10 @@ function App() {
     setCameraActive(false);
   };
 
-  const pushHistoryEntry = (result, preview) => {
+  const pushHistoryEntry = (result) => {
+    const historyPreview = imageRef.current
+      ? imageElementToHistoryPreview(imageRef.current)
+      : previewUrl;
     const entry = {
       id: `${Date.now()}`,
       createdAt: new Date().toISOString(),
@@ -586,7 +608,7 @@ function App() {
       affectedZones: result.affectedZones,
       severity: result.diagnosisInfo.severity,
       recommendation: result.diagnosisInfo.recommendations[0],
-      preview,
+      preview: historyPreview,
       modelSource: result.modelSource,
     };
 
@@ -648,7 +670,7 @@ function App() {
             modelSource: `backend API (${API_BASE_URL})`,
           };
           setAnalysis(normalizedResult);
-          pushHistoryEntry(normalizedResult, previewUrl);
+          pushHistoryEntry(normalizedResult);
           setStatus(
             "Backend analysis complete with MobileNetV2 prediction, Grad-CAM, and LIME.",
           );
@@ -693,7 +715,7 @@ function App() {
       };
 
       setAnalysis(fallbackResult);
-      pushHistoryEntry(fallbackResult, previewUrl);
+      pushHistoryEntry(fallbackResult);
 
       if (isInvalid) {
         setStatus(
