@@ -111,6 +111,22 @@ body {
   font-weight: 600;
 }
 
+.header-credits {
+  display: grid;
+  gap: 2px;
+  margin-top: 7px;
+  color: #6b7d62;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.header-credits p {
+  margin: 0;
+}
+
 .header-nav {
   display: inline-flex;
   gap: 8px;

@@ -904,6 +904,10 @@ function App() {
         <div>
           <h1 className="header-title">DR.ZEA MAIZE</h1>
           <p className="header-subtitle">Smart Maize Assistant</p>
+          <div className="header-credits" aria-label="Project credits">
+            <p>AARTHI S III-B.TECH-AIT, AEC&amp;RI,TNAU,COIMBATORE</p>
+            <p>SAKTHIVEL R, GIS &amp;AI EXPERT, ICF, BANGALORE</p>
+          </div>
         </div>
       </div>
 
