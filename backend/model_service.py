@@ -156,20 +156,29 @@ class ModelService:
             & (saturation > 22)
             & ~rust_pixels
         )
-        green_pixels = (green > red * 1.05) & (green > blue * 1.1) & (brightness > 75)
+        green_pixels = (
+            (green > red * 0.95)
+            & (green > blue * 1.04)
+            & (brightness > 70)
+            & (saturation > 18)
+        )
 
         rust_ratio = float(np.mean(rust_pixels))
         gray_ratio = float(np.mean(gray_pixels))
         blight_ratio = float(np.mean(blight_pixels))
         green_ratio = float(np.mean(green_pixels))
         lesion_ratio = min(1.0, rust_ratio + gray_ratio + blight_ratio)
+        healthy_bonus = max(green_ratio - lesion_ratio * 1.4, 0.0)
 
         scores = {
             "Common_rust": 0.16 + rust_ratio * 8.5,
             "Gray_leaf_spot": 0.12 + gray_ratio * 3.1,
             "Northern leaf Blight": 0.12 + blight_ratio * 2.3,
-            "Healthy leaf": 0.15 + green_ratio * 0.75 - lesion_ratio * 0.65,
+            "Healthy leaf": 0.18 + healthy_bonus * 1.55 - lesion_ratio * 0.35,
         }
+
+        if green_ratio > 0.62 and lesion_ratio < 0.08:
+            scores["Healthy leaf"] += 0.55
 
         for label in list(scores):
             if label not in self.labels:
