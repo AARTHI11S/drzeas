@@ -135,9 +135,27 @@ class ModelService:
         brightness = np.mean(image_array, axis=2)
         saturation = np.max(image_array, axis=2) - np.min(image_array, axis=2)
 
-        rust_pixels = (red > green * 1.08) & (red > blue * 1.18) & (saturation > 30)
-        gray_pixels = (brightness < 150) & (np.abs(red - green) < 35) & (saturation < 75)
-        blight_pixels = (red > 95) & (green > 80) & (brightness < 170) & (saturation > 22)
+        rust_pixels = (
+            (red > 85)
+            & (green > 35)
+            & (blue < 135)
+            & (red > blue * 1.12)
+            & ((red > green * 0.92) | ((red - blue) > 38))
+            & (saturation > 24)
+        )
+        gray_pixels = (
+            (brightness < 155)
+            & (np.abs(red - green) < 35)
+            & (saturation < 68)
+            & ~rust_pixels
+        )
+        blight_pixels = (
+            (red > 95)
+            & (green > 80)
+            & (brightness < 170)
+            & (saturation > 22)
+            & ~rust_pixels
+        )
         green_pixels = (green > red * 1.05) & (green > blue * 1.1) & (brightness > 75)
 
         rust_ratio = float(np.mean(rust_pixels))
@@ -147,9 +165,9 @@ class ModelService:
         lesion_ratio = min(1.0, rust_ratio + gray_ratio + blight_ratio)
 
         scores = {
-            "Common_rust": 0.12 + rust_ratio * 5.5,
-            "Gray_leaf_spot": 0.12 + gray_ratio * 3.6,
-            "Northern leaf Blight": 0.12 + blight_ratio * 2.8,
+            "Common_rust": 0.16 + rust_ratio * 8.5,
+            "Gray_leaf_spot": 0.12 + gray_ratio * 3.1,
+            "Northern leaf Blight": 0.12 + blight_ratio * 2.3,
             "Healthy leaf": 0.15 + green_ratio * 0.75 - lesion_ratio * 0.65,
         }
 
