@@ -18,7 +18,12 @@ const SLIDER_IMAGES = [
   `${import.meta.env.BASE_URL}image2.png`,
   `${import.meta.env.BASE_URL}image3.png`,
 ];
-const ABOUT_IMAGES = [
+const ABOUT_GRID_IMAGES = [
+  `${import.meta.env.BASE_URL}image6.jpeg`,
+  `${import.meta.env.BASE_URL}image7.jpeg`,
+  `${import.meta.env.BASE_URL}image8.jpeg`,
+];
+const ABOUT_COLUMN_IMAGES = [
   `${import.meta.env.BASE_URL}image9.jpeg`,
   `${import.meta.env.BASE_URL}image10.jpeg`,
   `${import.meta.env.BASE_URL}image11.jpeg`,
@@ -868,7 +873,7 @@ function App() {
 
   const renderAboutImageGrid = () => (
     <div className="about-image-grid" aria-label="Maize leaf disease examples">
-      {ABOUT_IMAGES.map((image, index) => (
+      {ABOUT_GRID_IMAGES.map((image, index) => (
         <img
           key={image}
           src={image}
@@ -881,7 +886,7 @@ function App() {
 
   const renderAboutImageColumn = () => (
     <aside className="about-image-column" aria-label="Maize damage samples">
-      {ABOUT_IMAGES.map((image, index) => (
+      {ABOUT_COLUMN_IMAGES.map((image, index) => (
         <img
           key={image}
           src={image}
