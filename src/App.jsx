@@ -19,9 +19,9 @@ const SLIDER_IMAGES = [
   `${import.meta.env.BASE_URL}image3.png`,
 ];
 const ABOUT_IMAGES = [
-  `${import.meta.env.BASE_URL}image6.jpeg`,
-  `${import.meta.env.BASE_URL}image7.jpeg`,
-  `${import.meta.env.BASE_URL}image8.jpeg`,
+  `${import.meta.env.BASE_URL}image9.jpeg`,
+  `${import.meta.env.BASE_URL}image10.jpeg`,
+  `${import.meta.env.BASE_URL}image11.jpeg`,
 ];
 const GRID_COLUMNS = 4;
 const GRID_ROWS = 4;
