@@ -1,0 +1,18 @@
+.weather-container {
+  background-color: #e0f2fe;
+  padding: 20px;
+  margin: 20px auto;
+  border: 2px solid #0284c7;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.weather-container h2 {
+  color: #0369a1;
+}
+
+.weather-container p {
+  font-size: 16px;
+  margin: 5px 0;
+}

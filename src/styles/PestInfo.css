@@ -1,0 +1,22 @@
+.pestinfo-container {
+  background-color: #fff7ed;
+  padding: 20px;
+  margin: 20px auto;
+  border: 2px solid #fb923c;
+  border-radius: 12px;
+  max-width: 500px;
+}
+
+.pestinfo-container h2 {
+  color: #ea580c;
+}
+
+.pestinfo-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.pestinfo-container li {
+  padding: 8px 0;
+  border-bottom: 1px dashed #fdba74;
+}

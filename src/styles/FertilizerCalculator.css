@@ -1,0 +1,29 @@
+.fertilizer-container {
+  background-color: #fefce8;
+  padding: 20px;
+  margin: 20px auto;
+  border: 2px solid #eab308;
+  border-radius: 12px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.fertilizer-container input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 80%;
+}
+
+.fertilizer-container button {
+  padding: 10px 20px;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.results p {
+  font-weight: bold;
+  color: #064e3b;
+}

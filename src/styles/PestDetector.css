@@ -1,0 +1,14 @@
+.pest-detector {
+  margin: 20px;
+  padding: 15px;
+  border: 2px dashed #62bfcf;
+  border-radius: 10px;
+  background: #f2ffff;
+}
+
+.uploaded-img, .heatmap-img {
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+  border-radius: 8px;
+}
