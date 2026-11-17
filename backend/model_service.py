@@ -200,9 +200,7 @@ class ModelService:
             gradcam_heatmap,
         )
 
-        lime_image_b64 = self.make_lime_explanation(
-            image_array,
-        )
+        lime_image_b64 = None
 
         diagnosis = get_diagnosis_info(label)
 
